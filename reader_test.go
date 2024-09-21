@@ -357,3 +357,20 @@ func TestReaderLitePHPBrowscap(t *testing.T) {
 		},
 	)
 }
+
+func TestReaderLuaHttpClient(t *testing.T) {
+	assertINI(
+		t,
+		mustParseFile(t, "fixtures/lua_http_client.ini"),
+		[]*Section{
+			{
+				Name: "lua-resty-http/0.07 *",
+				Properties: map[string]any{
+					"Parent":   "lua http client",
+					"Version":  "0.07",
+					"MinorVer": "07",
+				},
+			},
+		},
+	)
+}

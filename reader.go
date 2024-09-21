@@ -139,7 +139,15 @@ func (r *Reader) parsePropertyStringValue(propertyName string, quote rune) state
 }
 
 func (r *Reader) isInteger(value string) bool {
-	for _, c := range value {
+	if value == "" {
+		return false
+	}
+
+	if len(value) > 1 && value[0] == '0' {
+		return false
+	}
+
+	for _, c := range value[1:] {
 		if c < '0' || c > '9' {
 			return false
 		}
